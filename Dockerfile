@@ -7,3 +7,7 @@ RUN wget https://github.com/liquibase/liquibase/releases/download/v$VERSION/liqu
 RUN mkdir liquibase
 RUN tar zxvf liquibase-$VERSION.tar.gz -C liquibase
 RUN ln -snf /app/liquibase/liquibase /usr/local/bin/liquibase
+# 调整时区
+RUN apk add tzdata
+ENV TZ=Asia/Shanghai
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
