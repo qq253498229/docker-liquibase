@@ -6,7 +6,7 @@ ENV VERSION=3.8.1
 RUN wget https://github.com/liquibase/liquibase/releases/download/v$VERSION/liquibase-$VERSION.tar.gz
 RUN mkdir liquibase
 RUN tar zxvf liquibase-$VERSION.tar.gz -C liquibase
-RUN ln -snf /liquibase/liquibase /usr/local/bin/liquibase
+RUN ln -snf liquibase/liquibase /usr/local/bin/liquibase
 RUN rm -rf liquibase-$VERSION.tar.gz
 # 调整时区
 RUN apk add tzdata
