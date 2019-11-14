@@ -1,0 +1,12 @@
+version: "3"
+services:
+  liquibase:
+    image: registry.cn-beijing.aliyuncs.com/codeforfun/liquibase:latest
+    container_name: liquibase
+    build: .
+    ports:
+      - "2222:22"
+networks:
+  default:
+    external:
+      name: local
