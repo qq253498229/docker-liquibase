@@ -3,11 +3,12 @@ RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
 RUN apk update && apk add bash
 # 安装liquibase
 ENV VERSION=3.8.1
+ENV LIQUIBASE_FOLDER=/liquibase
 RUN wget https://github.com/liquibase/liquibase/releases/download/v$VERSION/liquibase-$VERSION.tar.gz
-RUN mkdir liquibase
-RUN tar zxvf liquibase-$VERSION.tar.gz -C liquibase
-RUN ln -snf /liquibase/liquibase /usr/local/bin/liquibase
-RUN rm -rf liquibase-$VERSION.tar.gz
+RUN mkdir $LIQUIBASE_FOLDER && \
+    tar zxvf liquibase-$VERSION.tar.gz -C $LIQUIBASE_FOLDER && \
+    rm -rf liquibase-$VERSION.tar.gz
+RUN ln -snf $LIQUIBASE_FOLDER/liquibase /usr/local/bin/liquibase
 # 调整时区
 RUN apk add tzdata
 ENV TZ=Asia/Shanghai
